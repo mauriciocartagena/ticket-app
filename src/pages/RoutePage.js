@@ -1,42 +1,52 @@
 import { DesktopOutlined, PieChartOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu } from "antd";
-
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Ingresar } from "./Ingresar";
+import { Cola } from "./Cola";
+import { Escritorio } from "./Escritorio";
+import { CrearTicket } from "./CrearTicket";
 const { Content, Footer, Sider } = Layout;
 
 export const RoutePage = () => {
   return (
-    <Layout style={{ height: "100vh" }}>
-      <Sider>
-        <div className="logo" />
-        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-          <Menu.Item key="1" icon={<PieChartOutlined />}>
-            Ingresar
-          </Menu.Item>
-          <Menu.Item key="2" icon={<DesktopOutlined />}>
-            Cola
-          </Menu.Item>
-          <Menu.Item key="3" icon={<DesktopOutlined />}>
-            Crear ticket
-          </Menu.Item>
-        </Menu>
-      </Sider>
-      <Layout className="site-layout">
-        <Content style={{ margin: "0 16px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
-          <div
-            className="site-layout-background"
-            style={{ padding: 24, minHeight: 360 }}
-          >
-            Bill is a cat.
-          </div>
-        </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
+    <Router>
+      <Layout style={{ height: "100vh" }}>
+        <Sider collapsedWidth="0" breakpoint="md">
+          <div className="logo" />
+          <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+            <Menu.Item key="1" icon={<PieChartOutlined />}>
+              <Link to="/ingresar">Ingresar</Link>
+            </Menu.Item>
+            <Menu.Item key="2" icon={<DesktopOutlined />}>
+              <Link to="/cola">Cola de tickets</Link>
+            </Menu.Item>
+            <Menu.Item key="3" icon={<DesktopOutlined />}>
+              <Link to="/crear">Crear ticket</Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout className="site-layout">
+          <Content style={{ margin: "0 16px" }}>
+            <Breadcrumb style={{ margin: "16px 0" }}></Breadcrumb>
+            <div
+              className="site-layout-background"
+              style={{ padding: 24, minHeight: 360 }}
+            >
+              <Routes>
+                <Route path="/ingresar" element={<Ingresar />} />
+                <Route path="/cola" element={<Cola />} />
+                <Route path="/crear" element={<CrearTicket />} />
+                <Route path="/escritorio" element={<Escritorio />} />
+
+                <Route path="*" element={<Escritorio />} />
+              </Routes>
+            </div>
+          </Content>
+          <Footer style={{ textAlign: "center" }}>
+            Ant Design ©2018 Created by Ant UED
+          </Footer>
+        </Layout>
       </Layout>
-    </Layout>
+    </Router>
   );
 };
