@@ -5,13 +5,17 @@ import { Ingresar } from "./Ingresar";
 import { Cola } from "./Cola";
 import { Escritorio } from "./Escritorio";
 import { CrearTicket } from "./CrearTicket";
+import { useContext } from "react";
+import { UiContext } from "../content/UiContext";
 const { Content, Footer, Sider } = Layout;
 
 export const RoutePage = () => {
+  const { ocultarMenu } = useContext(UiContext);
+
   return (
     <Router>
       <Layout style={{ height: "100vh" }}>
-        <Sider collapsedWidth="0" breakpoint="md">
+        <Sider collapsedWidth="0" breakpoint="md" hidden={ocultarMenu}>
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1" icon={<PieChartOutlined />}>

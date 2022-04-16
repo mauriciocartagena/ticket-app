@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { CloseCircleOutlined, RightCircleOutlined } from "@ant-design/icons";
 import { Col, Row, Typography, Button, Divider } from "antd";
+import { Navigate, useNavigate } from "react-router-dom";
+import { getUsuarioStorage } from "../helpers/getUsuarioStorage";
 
 const { Title, Text } = Typography;
 
 export const Escritorio = () => {
+  const history = useNavigate();
+
+  const [usuario] = useState(getUsuarioStorage());
   const salir = () => {
-    console.log("salir");
+    localStorage.clear();
+    history("/ingresar", { replace: true });
   };
 
   const siguienteTicket = () => {
     console.log("siguienteTicket");
   };
+
+  if (!usuario.agente || !usuario.escritorio) {
+    return <Navigate replace to="/ingresar" />;
+  }
   return (
     <>
       <Row>
