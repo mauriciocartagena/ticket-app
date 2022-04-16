@@ -6,7 +6,7 @@ import { Cola } from "./Cola";
 import { Escritorio } from "./Escritorio";
 import { CrearTicket } from "./CrearTicket";
 import { useContext } from "react";
-import { UiContext } from "../content/UiContext";
+import { UiContext } from "../context/UiContext";
 const { Content, Footer, Sider } = Layout;
 
 export const RoutePage = () => {

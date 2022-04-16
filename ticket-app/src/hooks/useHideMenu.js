@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { UiContext } from "../content/UiContext";
+import { UiContext } from "../context/UiContext";
 
 export const useHideMenu = (ocultar) => {
   const { showMenu, hideMenu } = useContext(UiContext);
